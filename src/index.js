@@ -6,8 +6,9 @@ import './index.css';
 import App from './components/App';
 
 
-import movies from './reducers.js';
-const store = createStore(movies);
+// import movies from './reducers.js';
+import rootReducer from './reducers.js';
+const store = createStore(rootReducer);
 console.log('store', store);
 // console.log('AFTER STATE',store.getState());
 
