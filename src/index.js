@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createStore, applyMiddleware } from 'redux';
-
 import './index.css';
 import App from './components/App';
-
+import thunk from 'redux-thunk';
 // import movies from './reducers.js';
 import rootReducer from './reducers.js';
 
@@ -29,7 +28,7 @@ const logger = ({dispatch,getState }) => (next) => (action) =>{
 }
 
 
-const store = createStore(rootReducer,applyMiddleware(logger));
+const store = createStore(rootReducer,applyMiddleware(logger,thunk));
 console.log('store', store);
 // console.log('AFTER STATE',store.getState());
 
