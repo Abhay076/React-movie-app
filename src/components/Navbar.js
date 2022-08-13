@@ -1,5 +1,6 @@
 import React from "react";
-import { connect} from "../index";
+// import { connect} from "../index";
+import {connect} from 'react-redux';
 import { handleMovieSearch } from "../actions";
 // import { data } from "../data";
 import {addMovieToList} from "../actions"
@@ -76,10 +77,9 @@ import {addMovieToList} from "../actions"
 
 function mapStateToProps ({search}){
   return {
-     search
-
+     search,
   }
 }
 
 
-export default connect(mapStateToProps)(NavbarWrapper);
+export default connect(mapStateToProps)(Navbar);

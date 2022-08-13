@@ -1,9 +1,11 @@
 import {data} from '../data';
 import Navbar from './Navbar';
 import React from 'react';
+// import { Connect } from 'react-redux';
+import {connect} from 'react-redux';
 import MovieCard from './MovieCard';
 // import { StoreContext } from '../index';
-import { connect } from '../index';
+// import { connect } from '../index';
 import { addMovies, setShowFavourites } from '../actions';
 class App extends React.Component {
   
