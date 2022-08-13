@@ -30,37 +30,37 @@ onChangeTab = (val) =>{
   this.props.store.dispatch(setShowFavourites(val))
 }
   render(){
-    const {movies} = this.props.store.getState();//{movies:{},search:{}}
-  const {list,favourites,showFavourites} = movies;
+  const {movies} = this.props.store.getState();//{movies:{},search:{}}
+   const {list,favourites,showFavourites} = movies;
 
   console.log('RENDER',this.props.store.getState());
   const displayMovies = showFavourites ? favourites : list;
-  // use context
   return (
-    <StoreContext.Consumer>
-       {(store) => {
- return (
-  <div className="App">
-    <Navbar dispatch={this.props.store.dispatch} search={this.props.store.getState().search} />
-    <div className="main">
-          <div className="tabs">
-               <div className={`tab ${showFavourites ? '':'active-tabs'}`} onClick={() => this.onChangeTab(false)}>Movies</div>
-               <div className={`tab ${showFavourites ? 'active-tabs':''}`} onClick={() => this.onChangeTab(true)}>Favourites</div>
-          </div>
-          <div className="list">
-             {displayMovies.map((movie,index)=>(
-               <MovieCard movie={movie} key={`movies-${index}`} dispatch={this.props.store.dispatch} isFavourite={this.isMovieFavourite(movie)}/>
-             ))}
-          </div>
-          {displayMovies.length === 0 ? <div className='no-movies'> No Movies to display!</div>:null}
+    <div className="App">
+      <Navbar  search={this.props.store.getState().search} />
+      <div className="main">
+            <div className="tabs">
+                 <div className={`tab ${showFavourites ? '':'active-tabs'}`} onClick={() => this.onChangeTab(false)}>Movies</div>
+                 <div className={`tab ${showFavourites ? 'active-tabs':''}`} onClick={() => this.onChangeTab(true)}>Favourites</div>
+            </div>
+            <div className="list">
+               {displayMovies.map((movie,index)=>(
+                 <MovieCard movie={movie} key={`movies-${index}`} dispatch={this.props.store.dispatch} isFavourite={this.isMovieFavourite(movie)}/>
+               ))}
+            </div>
+            {displayMovies.length === 0 ? <div className='no-movies'> No Movies to display!</div>:null}
+      </div>
     </div>
-  </div>
-);
-       }}
-    </StoreContext.Consumer>
   );
-  
  }
 }
-
-export default App;
+class AppWrapper extends React.Component{
+  render(){
+    return (
+      <StoreContext.Consumer>
+         {(store) => <App store={store}/>}
+      </StoreContext.Consumer>
+    )
+  }
+}
+export default AppWrapper;
